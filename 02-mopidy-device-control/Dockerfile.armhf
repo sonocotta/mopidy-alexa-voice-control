@@ -1,4 +1,4 @@
-FROM armhf/node:6.9.1-slim
+FROM node:lts-slim
 
 # start script
 COPY 02-mopidy-device-control/start.sh /usr/sbin/start.sh
@@ -8,7 +8,7 @@ COPY 02-mopidy-device-control/www/package.json /www/
 WORKDIR /www
 RUN npm install
 
-# service data 
+# service data
 COPY 02-mopidy-device-control/www/answers.js 02-mopidy-device-control/www/index.js 02-mopidy-device-control/www/mopidy.js 02-mopidy-device-control/www/intent-schema.json /www/
 COPY 02-mopidy-device-control/www/config-example.js /www/config.js
 
