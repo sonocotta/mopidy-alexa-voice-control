@@ -1,67 +1,107 @@
 {
-  "intents": [
-    {
-      "intent": "play"
-    },
-    {
-      "intent": "pause"
-    },
-    {
-      "intent": "resume"
-    },
-    {
-      "intent": "stop"
-    },
-    {
-      "intent": "volumeOff"
-    },
-    {
-      "intent": "volumeDefault"
-    },
-    {
-      "slots": [
-        {
-          "name": "volumeValue",
-          "type": "AMAZON.NUMBER"
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "mopidy",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "play",
+                    "slots": [],
+                    "samples": [
+                        "play"
+                    ]
+                },
+                {
+                    "name": "pause",
+                    "slots": [],
+                    "samples": [
+                        "pause"
+                    ]
+                },
+                {
+                    "name": "resume",
+                    "slots": [],
+                    "samples": [
+                        "resume"
+                    ]
+                },
+                {
+                    "name": "stop",
+                    "slots": [],
+                    "samples": [
+                        "stop"
+                    ]
+                },
+                {
+                    "name": "volumeIncrease",
+                    "slots": [],
+                    "samples": [
+                        "increase volume"
+                    ]
+                },
+                {
+                    "name": "volumeDecrease",
+                    "slots": [],
+                    "samples": [
+                        "decrease volume"
+                    ]
+                },
+                {
+                    "name": "volumeOff",
+                    "slots": [],
+                    "samples": [
+                        "volume off",
+                        "mute"
+                    ]
+                },
+                {
+                    "name": "volumeDefault",
+                    "slots": [],
+                    "samples": [
+                        "set default volume"
+                    ]
+                },
+                {
+                    "name": "volumeSet",
+                    "slots": [
+                        {
+                            "name": "volumeValue",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "set volume to {volumeValue}"
+                    ]
+                },
+                {
+                    "name": "radioPlay",
+                    "slots": [
+                        {
+                            "name": "name",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "radiotext {name}"
+                    ]
+                }
+            ],
+            "types": []
         }
-      ],
-      "intent": "volumeSet"
-    },
-    {
-      "slots": [
-        {
-          "name": "by",
-          "type": "AMAZON.NUMBER"
-        }
-      ],
-      "intent": "volumeIncrease"
-    },
-    {
-      "slots": [
-        {
-          "name": "by",
-          "type": "AMAZON.NUMBER"
-        }
-      ],
-      "intent": "volumeDecrease"
-    },
-    {
-      "slots": [
-        {
-          "name": "index",
-          "type": "AMAZON.NUMBER"
-        }
-      ],
-      "intent": "radioPlay"
-    },
-    {
-      "slots": [
-        {
-          "name": "index",
-          "type": "AMAZON.NUMBER"
-        }
-      ],
-      "intent": "trackPlay"
     }
-  ]
 }

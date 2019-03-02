@@ -12,10 +12,10 @@ var device = {
 };
 
 registry.create(device, function(err, deviceInfo, res) {
-    if (err) 
+    if (err)
         console.log('error: ' + err.toString());
-    if (res) 
+    if (res)
         console.log('status: ' + res.statusCode + ' ' + res.statusMessage);
-    if (deviceInfo) 
+    if (deviceInfo)
         console.log('device info: ' + JSON.stringify(deviceInfo));
 });
