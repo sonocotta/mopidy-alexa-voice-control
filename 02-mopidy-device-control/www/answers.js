@@ -1,9 +1,9 @@
 /* eslint-disable  func-names */
 /* eslint-disable max-len */
 /* eslint quote-props: ['error', 'consistent']*/
- 
+
 module.exports = {
-    
+
     answers: {
         positive: [
             "OK",
@@ -39,5 +39,5 @@ module.exports = {
     getPositiveResponse: function() {
         return this.getRandomAnswer(this.answers.positive);
     }
-   
+
 };

@@ -8,3 +8,4 @@
 02-mopidy-device-control/www/node_modules
 02-mopidy-device-control/d_run.sh
 
+**/node_modules

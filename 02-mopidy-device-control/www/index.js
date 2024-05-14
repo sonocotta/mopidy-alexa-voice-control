@@ -18,9 +18,9 @@ var client = null;
             console.error('Could not connect: ' + err.message);
         } else {
             console.log('Connected to device. Registering handlers for methods:');
-            mopidy.actions.forEach(x => {
-                console.log("*", x.name);
-                client.onDeviceMethod(x.name, getActionHandler(x));
+            mopidy.actions.forEach(action => {
+                console.log("*", action.name);
+                client.onDeviceMethod(action.name, getActionHandler(action));
             });
             console.log("Ready");
         }
@@ -30,9 +30,9 @@ var client = null;
 var getActionHandler = function(action) {
     return function (request, response) {
         printDeviceMethodRequest(request);
-    
-        var actions = mopidy.actions.filter((x) => { return x.name === action.name });
-    
+
+        var actions = mopidy.actions.filter((mopidyAction) => { return mopidyAction.name === action.name });
+
         if (actions.length == 0) {
             doResponse(request, response, {
                 message: answers.getNegativeResponse()
@@ -70,7 +70,7 @@ var doResponse = function(request, response, payload) {
 
 var printDeviceMethodRequest = function(request) {
     console.log('Received method call for method \'' + request.methodName + '\'');
-    //if(!!(request.payload)) {
+    // if(!!(request.payload)) {
     //    console.log('Payload:\n' + request.payload);
-    //}
+    // }
 };
