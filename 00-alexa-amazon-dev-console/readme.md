@@ -1,21 +1,21 @@
-# Zero layer - alexa skill definition
+# Zero layer - Alexa skill definition
 
-First layer of this app is amazon skill definition. It have all the information about natural language commands that we are planning to handle. Also it have service hook definition which will recieve Alexa's calls.
+The first layer of this app is the Amazon skill definition. It has all the information about natural language commands we plan to handle. Also, it has a service hook definition which will receive Alexa's calls.
 
-Good tutorial covering this part you can find on [YouTube] (https://www.youtube.com/watch?v=zt9WdE5kR6g)
+You have a good tutorial covering this part you can find on [YouTube](https://www.youtube.com/watch?v=zt9WdE5kR6g) (it is probably outdated though)
 
-In my case i want to handle following mesages
+In my case, I want to handle the following messages
 
 * Play control: play, pause, resume, stop
 * Volume control: set specific volume, mute, increase and decrease volume
-* Play radio from my favourites list, identified just by slot number
-* Play audio track in tha same manner
+* Play radio from my favorites list, identified just by slot number
+* Play the audio track in the same manner
 
 ## Service hook
 
-I decided to host service as amazon lambda function. 
+I decided to host the service as an Amazon lambda function. 
 
-* It is very well covered in tutorials and sort of default choice
+* It is very well covered in tutorials and is sort of the default choice
 * For my volumes it is free
 * Practical experience using Amazon lambda functions
 
@@ -25,19 +25,15 @@ I decided to host service as amazon lambda function.
 2. Use schema and sample utterances from this folder 
 3. Enable skill at [your profile page](https://alexa.amazon.com/spa/index.html#skills/your-skills/?ref-suffix=ysa_gw)
 
-
-
 ## Links
 
-* [Amazon dev Console - starting point](https://developer.amazon.com/edw/home.html#/skills)
+* [Amazon dev Console - starting point](https://developer.amazon.com/alexa/console/ask)
 * [Amazon Skill Model docs](https://developer.amazon.com/docs/custom-skills/define-the-interaction-model-in-json-and-text.html)
 * [YouTube tutorial](https://www.youtube.com/watch?time_continue=39&v=zt9WdE5kR6g)
 
-
-please go to [next layer](../01-mopidy-voice-control-skill) for more
+please go to the [next layer](../01-mopidy-voice-control-skill) for more
 
 ## Screenshots
 
-![Dev console root](https://raw.githubusercontent.com/anabolyc/alexa-mopidy-voice-control/master/screenshots/01-alexa-dev-console.png)
-![Skill information](https://raw.githubusercontent.com/anabolyc/alexa-mopidy-voice-control/master/screenshots/02-alexa-skill-def.png)
-![Skill configuration](https://raw.githubusercontent.com/anabolyc/alexa-mopidy-voice-control/master/screenshots/03-alexa-skill-def.png)
+![image](https://github.com/sonocotta/mopidy-alexa-voice-control/assets/5459747/e8aa6eb6-4401-43ad-b4b7-e32bf3f3dbbe)
+![image](https://github.com/sonocotta/mopidy-alexa-voice-control/assets/5459747/3a47f1dc-ea06-42f2-bcb1-079607d8cc67)
