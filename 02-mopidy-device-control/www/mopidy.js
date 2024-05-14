@@ -3,18 +3,18 @@
 /* eslint quote-props: ['error', 'consistent']*/
 
 const axios = require('axios');
-const intents = require('./intent-schema.json');
+const intents = require('./intent-schema.json').interactionModel.languageModel.intents;
 const config = require('./config');
- 
+
 module.exports = {
-    
+
     'actions': [
         {
             "name": "play",
             "method": "POST",
             "request": {
-                "jsonrpc": "2.0", 
-                "id": 1, 
+                "jsonrpc": "2.0",
+                "id": 1,
                 "method": "core.playback.play"
             }
         },
@@ -22,8 +22,8 @@ module.exports = {
             "name": "pause",
             "method": "POST",
             "request": {
-                "jsonrpc": "2.0", 
-                "id": 1, 
+                "jsonrpc": "2.0",
+                "id": 1,
                 "method": "core.playback.pause"
             }
         },
@@ -31,8 +31,8 @@ module.exports = {
             "name": "resume",
             "method": "POST",
             "request": {
-                "jsonrpc": "2.0", 
-                "id": 1, 
+                "jsonrpc": "2.0",
+                "id": 1,
                 "method": "core.playback.play"
             }
         },
@@ -40,18 +40,17 @@ module.exports = {
             "name": "stop",
             "method": "POST",
             "request": {
-                "jsonrpc": "2.0", 
-                "id": 1, 
+                "jsonrpc": "2.0",
+                "id": 1,
                 "method": "core.playback.stop"
             }
         },
-        
         {
             "name": "volumeGet",
             "method": "POST",
             "request": {
-                "jsonrpc": "2.0", 
-                "id": 1, 
+                "jsonrpc": "2.0",
+                "id": 1,
                 "method": "core.mixer.get_volume"
             }
         },
@@ -59,28 +58,28 @@ module.exports = {
             "name": "volumeOff",
             "method": "POST",
             "request": {
-                "jsonrpc": "2.0", 
-                "id": 1, 
+                "jsonrpc": "2.0",
+                "id": 1,
                 "method": "core.mixer.set_volume",
-                "params": [0]   
+                "params": [0]
             }
         },
         {
             "name": "volumeDefault",
             "method": "POST",
             "request": {
-                "jsonrpc": "2.0", 
-                "id": 1, 
+                "jsonrpc": "2.0",
+                "id": 1,
                 "method": "core.mixer.set_volume",
-                "params": [3]   
+                "params": [3]
             }
         },
         {
             "name": "volumeSet",
             "method": "POST",
             "request": {
-                "jsonrpc": "2.0", 
-                "id": 1, 
+                "jsonrpc": "2.0",
+                "id": 1,
                 "method": "core.mixer.set_volume",
             },
             prepare: (request, slots) => {
@@ -94,15 +93,15 @@ module.exports = {
             "name": "volumeIncrease",
             "method": "POST",
             "request": {
-                "jsonrpc": "2.0", 
-                "id": 1, 
+                "jsonrpc": "2.0",
+                "id": 1,
                 "method": "core.mixer.set_volume",
             },
             prepare: (request, slots) => {
                 return new Promise((resolve, reject) => {
                     module.exports.getVolumePromise().then(res => {
-                        var newVolume = Math.min(res + slots[0].value, 100); 
-                        request.params = [newVolume];    
+                        var newVolume = Math.min(res + slots[0].value, 100);
+                        request.params = [newVolume];
                         return resolve(request);
                     }).catch(err => {
                         return reject(err);
@@ -114,15 +113,15 @@ module.exports = {
             "name": "volumeDecrease",
             "method": "POST",
             "request": {
-                "jsonrpc": "2.0", 
-                "id": 1, 
+                "jsonrpc": "2.0",
+                "id": 1,
                 "method": "core.mixer.set_volume",
             },
             prepare: (request, slots) => {
                 return new Promise((resolve, reject) => {
                     module.exports.getVolumePromise().then(res => {
-                        var newVolume = Math.max(res - slots[0].value, 0); 
-                        request.params = [newVolume];    
+                        var newVolume = Math.max(res - slots[0].value, 0);
+                        request.params = [newVolume];
                         return resolve(request);
                     }).catch(err => {
                         return reject(err);
@@ -130,13 +129,12 @@ module.exports = {
                 });
             }
         },
-
         {
             "name": "getPlaylists",
             "method": "POST",
             "request": {
-                "jsonrpc": "2.0", 
-                "id": 1, 
+                "jsonrpc": "2.0",
+                "id": 1,
                 "method": "core.playlists.as_list",
             }
         },
@@ -144,8 +142,8 @@ module.exports = {
             "name": "getPlaylistItems",
             "method": "POST",
             "request": {
-                "jsonrpc": "2.0", 
-                "id": 1, 
+                "jsonrpc": "2.0",
+                "id": 1,
                 "method": "core.playlists.get_items",
             },
             prepare: (request, slots, params) => {
@@ -161,8 +159,8 @@ module.exports = {
             "name": "tracklistAdd",
             "method": "POST",
             "request": {
-                "jsonrpc": "2.0", 
-                "id": 1, 
+                "jsonrpc": "2.0",
+                "id": 1,
                 "method": "core.tracklist.add",
             },
             prepare: (request, slots, params) => {
@@ -174,26 +172,38 @@ module.exports = {
                 });
             }
         },
-
+        {
+            "name": "tracklistClear",
+            "method": "POST",
+            "request": {
+                "jsonrpc": "2.0",
+                "id": 1,
+                "method": "core.tracklist.clear"
+            }
+        },
         {
             "name": "radioPlay",
             "method": "POST",
             "request": {
-                "jsonrpc": "2.0", 
-                "id": 1, 
+                "jsonrpc": "2.0",
+                "id": 1,
                 "method": "core.playback.play",
             },
             prepare: (request, slots) => {
-                return module.exports._askTrack(request, "[Radio Streams]", slots[0].value - 1);
+                var action = module.exports.actions.filter(x => { return x.name == "tracklistClear" }).pop();
+                return new Promise((resolve, reject) => {
+                    module.exports.requestPromise(action, {}).then((res) => {
+                        resolve(module.exports._askTrack(request, "[Radio Streams]", slots[0].value));
+                    });
+                });
             },
         },
-
         {
             "name": "trackPlay",
             "method": "POST",
             "request": {
-                "jsonrpc": "2.0", 
-                "id": 1, 
+                "jsonrpc": "2.0",
+                "id": 1,
                 "method": "core.playback.play",
             },
             prepare: (request, slots) => {
@@ -255,8 +265,8 @@ module.exports = {
     },
 
     requestPromise: (action, payload, params) => {
-        var schemas = intents.intents.filter(x => {
-            return x.intent == action.name;
+        var schemas = intents.filter(intent => {
+            return intent.name == action.name;
         });
         var schema = {
             slots: []
@@ -283,12 +293,10 @@ module.exports = {
                     return reject(err);
                 })
             });
-            
+
         } else {
             return module.exports._askMopidy(action);
         }
-
-        
     },
 
     _askMopidy: (action) => {
@@ -296,20 +304,26 @@ module.exports = {
         return axios({
             method: action.method,
             url: config.mopidyEndpoint,
-            data: action.request
+            data: action.request,
+            headers: {"Content-Type": "application/json"}
         });
     },
 
-    _askTrack: (request, tracklistName, trackIndex) => {
+    _askTrack: (request, tracklistName, trackNameOrIndex) => {
         return new Promise((resolve, reject) => {
             module.exports.getPlaylistPromise().then(res => {
                 var radioPlaylists = res.filter(x => x.name == tracklistName);
-                if (radioPlaylists.length == 0) 
+                if (radioPlaylists.length == 0)
                     return reject("Radio playlist not found");
                 var radioPlaylist = radioPlaylists.pop();
                 var uri = radioPlaylist.uri;
                 module.exports.getPlaylistItemsPromise(uri).then((res) => {
-                    var playlistItem = res[trackIndex];
+                    let playlistItem;
+                    if ( typeof trackNameOrIndex === 'number' ) {
+                        playlistItem = res[trackNameOrIndex];
+                    } else {
+                        playlistItem = res.filter(item => item.name.toLowerCase().indexOf(trackNameOrIndex.toLowerCase()) >= 0).pop();
+                    }
                     if (playlistItem) {
                         module.exports.tracklistAddPromise(playlistItem.uri).then((res) => {
                             request.params = {
@@ -317,10 +331,10 @@ module.exports = {
                             };
                             return resolve(request);
                         }).catch((err) => {
-                            return reject(err);        
+                            return reject(err);
                         });
                     } else {
-                        return reject("Playlist too short, {res.length} items in total, {trackIndex} requested");    
+                        return reject("Playlist too short, " + res.length + " items in total, " + trackNameOrIndex + " requested");
                     }
                 }).catch((err) => {
                     return reject(err);
@@ -329,6 +343,6 @@ module.exports = {
                 return reject(err);
             });
         });
-    }    
+    }
 
 };
